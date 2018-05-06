@@ -30,6 +30,14 @@ void leftUnsafe(int PWM) {
   analogWrite( MOTOR_RIGHT_PWM, PWM );      // PWM speed
 }
 
+// 5
+void stopUnsafe() {
+  digitalWrite( MOTOR_LEFT_DIR, LOW );
+  digitalWrite( MOTOR_LEFT_PWM, LOW );
+  digitalWrite( MOTOR_RIGHT_DIR, LOW );
+  digitalWrite( MOTOR_RIGHT_PWM, LOW );
+}
+
 // 6
 void rightUnsafe(int PWM) {
   digitalWrite( MOTOR_LEFT_DIR, LOW );    // direction = forward

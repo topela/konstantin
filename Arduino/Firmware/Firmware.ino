@@ -81,7 +81,7 @@ void loop()
   ir_left = digitalRead(IR_LEFT);
   ir_right = digitalRead(IR_RIGHT);
 
-  if (!canGoForward() && STATUS == FORWARD) {
+  if (!canGoForward() && isGoingForward()) {
     stop();
     Bluetooth.print("stop forward ");
     Bluetooth.print(distance);
@@ -92,8 +92,10 @@ void loop()
     switch ( Bluetooth.read() )
     {
       case '1':
-        Bluetooth.print( "forward left" );
-        forwardLeft(PWM_FAST);
+        Bluetooth.print( "forward left " );
+        Bluetooth.print(distance);
+        Bluetooth.println("cm");
+        forwardLeftSafe(PWM_FAST);
         break;
 
       case '2':
@@ -104,8 +106,10 @@ void loop()
         break;
 
       case '3':
-        Bluetooth.print( "forward right" );
-        forwardRight(PWM_FAST);
+        Bluetooth.print( "forward right " );
+        Bluetooth.print(distance);
+        Bluetooth.println("cm");
+        forwardRightSafe(PWM_FAST);
         break;
 
       case '4':

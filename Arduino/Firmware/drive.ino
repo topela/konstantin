@@ -44,11 +44,9 @@ void left(int PWM) {
 
 // 5
 void stop() {
+  if (STATUS == STOP) return;
   STATUS = STOP;
-  digitalWrite( MOTOR_LEFT_DIR, LOW );
-  digitalWrite( MOTOR_LEFT_PWM, LOW );
-  digitalWrite( MOTOR_RIGHT_DIR, LOW );
-  digitalWrite( MOTOR_RIGHT_PWM, LOW );
+  stopUnsafe();
 }
 
 // 6
