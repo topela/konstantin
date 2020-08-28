@@ -55,6 +55,9 @@ byte STATUS = STOP;
 const String BLUETOOTH_NAME = "Konstantin";
 SoftwareSerial Bluetooth(BLUETOOTH_RX, BLUETOOTH_TX);
 
+/* Buzzer */
+const int buzzer = 4; //buzzer to arduino pin 9
+
 int distance;
 int ir_left;
 int ir_right;
@@ -72,12 +75,23 @@ void setup()
   pinMode( MOTOR_LEFT_PWM, OUTPUT );
   pinMode( MOTOR_RIGHT_DIR, OUTPUT );
   pinMode( MOTOR_RIGHT_PWM, OUTPUT );
+
+  pinMode(buzzer, OUTPUT);
+  
   stop();
 }
 
 void loop()
 {
-  distance = sonar.distanceRead(CM);
+//
+//tone(buzzer, 50); // Send 1KHz sound signal...
+//  delay(1000);        // ...for 1 sec
+//  noTone(buzzer);     // Stop sound...
+//  delay(1000);        // ...for 1sec
+//
+//  return;
+  
+  distance = sonar.read(CM);
   ir_left = digitalRead(IR_LEFT);
   ir_right = digitalRead(IR_RIGHT);
 
